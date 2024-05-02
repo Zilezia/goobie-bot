@@ -14,19 +14,23 @@ class PushSelfCOG(commands.Cog):
         if msg.content == "pushing works?":
             await msg.channel.send("Yep")
     
-    @app_commands.command(name="push_yourself", description="Push the bots codes into github")
+    @app_commands.command(name="push_yourself", description="Push the bot's code to GitHub")
     async def push_yourself(self, msg: discord.Interaction):
         git_file_path = "."
 
         repo = Repo(git_file_path)
-        
+
         await msg.response.send_message("Staging changes...")
         repo.git.add('.')
         await msg.channel.send("Committing changes...")
         repo.git.commit('-m', "Log commit")
-        
+
+        await msg.channel.send("Pulling changes from remote repository...")
+        repo.git.pull('origin', 'main')
+
         await msg.channel.send("Pushing changes to remote repository...")
         repo.git.push('origin', 'main')
-        
+
         await msg.channel.send("Finished!")
+
     
