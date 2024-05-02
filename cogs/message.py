@@ -12,7 +12,7 @@ class MessageCOG(commands.Cog):
         
         content = msg.content.lower()
         
-        if content == "message cog working?":
+        if content == "messages work?":
             await msg.channel.send("Yeah")  
             
         if content == "goobie stop":

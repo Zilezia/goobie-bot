@@ -11,7 +11,7 @@ class PushSelfCOG(commands.Cog):
     async def on_message(self, msg: discord.Interaction):
         if msg.author == self.bot.user:
             return
-        if msg.content == "pushing is working?":
+        if msg.content == "pushing works?":
             await msg.channel.send("Yep")
     
     @app_commands.command(name="push_yourself", description="Push the bots codes into github")

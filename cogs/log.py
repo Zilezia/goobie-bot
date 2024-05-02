@@ -14,12 +14,10 @@ class LogCOG(commands.Cog):
     async def on_message(self, msg):
         if msg.author == self.bot.user:
             return
-        if msg.content == "logs cog working?":
+        if msg.content == "logs work?":
             await msg.channel.send("Yep")
     
     @app_commands.command(name="message_log", description="Log a message")
-    @app_commands.describe(commit_msg="Give a commit message")
-    @app_commands.describe(log="What should be posted as the log, if you want to have a link in the log type in {x} for each link and then use \"links\"")
     async def message_log(self, msg: discord.Interaction, log: str, commit_msg: str = None):
         log_file_path = r"..\..\goobie\src\pages\log\Log.tsx"
         git_file_path = r"..\..\goobie"
