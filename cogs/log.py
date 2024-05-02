@@ -18,7 +18,7 @@ class LogCOG(commands.Cog):
             await msg.channel.send("Yep")
     
     @app_commands.command(name="message_log", description="Log a message")
-    async def message_log(self, msg: discord.Interaction, log: str, commit_msg: str = None):
+    async def message_log(self, msg: discord.Interaction, log: str):
         log_file_path = r"..\..\goobie\src\pages\log\Log.tsx"
         git_file_path = r"..\..\goobie"
         line_number = 10
