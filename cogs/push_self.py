@@ -1,3 +1,4 @@
+from datetime import datetime
 import discord
 from discord import app_commands
 from discord.ext import commands
@@ -17,13 +18,15 @@ class PushSelfCOG(commands.Cog):
     @app_commands.command(name="push_yourself", description="Push the bot's code to GitHub")
     async def push_yourself(self, msg: discord.Interaction):
         git_file_path = "."
+        current_time = datetime.now().strftime("%d/%m/%Y-%H:%M")
+
 
         repo = Repo(git_file_path)
 
         await msg.response.send_message("Staging changes...")
         repo.git.add('.')
         await msg.channel.send("Committing changes...")
-        repo.git.commit('-m', "Log commit")
+        repo.git.commit('-m', f"Log commit - {current_time}")
 
         await msg.channel.send("Pulling changes from remote repository...")
         repo.git.pull('origin', 'main')
@@ -32,5 +35,6 @@ class PushSelfCOG(commands.Cog):
         repo.git.push('origin', 'main')
 
         await msg.channel.send("Finished!")
+        await msg.channel.send("https://github.com/Zilezia/goobie-bot")
 
     
