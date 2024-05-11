@@ -45,14 +45,17 @@ def run():
 
     async def load_cogs():
         for cog in [
+            # main cogs? 
             Log,
             PushSelf,
             FileEditor,
             
-            # vvv test/play cogs
-            TestRoles,
+            # just play cogs
             Message,
             Kick,
+
+            # test cogs
+            TestRoles,
         ]:
             await bot.add_cog(cog(bot))
     

@@ -15,8 +15,8 @@ class PushSelf(commands.Cog):
         if msg.content == "pushing works?":
             await msg.channel.send("Yep")
     
-    @app_commands.command(name="push_yourself", description="Push the bot's code to GitHub")
-    async def push_yourself(self, msg: discord.Interaction):
+    @app_commands.command(name="push_self", description="Push the bot's code to GitHub")
+    async def push_self(self, msg: discord.Interaction):
         git_file_path = "."
         current_time = datetime.now().strftime("%d/%m/%Y-%H:%M")
 
