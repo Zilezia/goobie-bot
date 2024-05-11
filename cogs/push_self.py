@@ -4,7 +4,7 @@ from discord import app_commands
 from discord.ext import commands
 from git import Repo
 
-class PushSelfCOG(commands.Cog):
+class PushSelf(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         
