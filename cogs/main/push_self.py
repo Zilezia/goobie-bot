@@ -19,4 +19,4 @@ class PushSelf(commands.Cog):
     async def push_self(self, msg: discord.Interaction):
         repo_link = 'https://github.com/Zilezia/goobie-bot'
         target_dir = '.'
-        await git_pushing(msg, self.bot, repo_link, target_dir)
+        await git_pushing(self.bot, msg, repo_link, target_dir)

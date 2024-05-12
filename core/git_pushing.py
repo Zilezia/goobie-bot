@@ -3,7 +3,7 @@ import discord
 from git import Repo
 
 
-async def git_pushing(msg: discord.Interaction, bot, repo_link, target_dir):
+async def git_pushing(bot, msg, repo_link, target_dir):
     cmt_channel = bot.get_channel(1239221685698166785) # is this right?
     current_time = datetime.now().strftime("%d/%m/%Y-%H:%M")
 
