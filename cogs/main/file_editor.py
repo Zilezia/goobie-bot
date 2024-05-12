@@ -25,9 +25,8 @@ class FileEditor(commands.Cog):
         file_path = r"..\..\goobie"
 
         # testing this out
-        current_dir = os.path.dirname(os.path.realpath(__file__))
         
-        test_fp = os.path.join(current_dir, "testing_dir")
+        test_fp = r'.\testing_dir'
         
         files = os.listdir(test_fp)
         files.sort(key=lambda x: int(x.split("random")[1].split(".")[0]))
