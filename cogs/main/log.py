@@ -1,10 +1,11 @@
-import asyncio
+# Libraries
 from datetime import datetime
 import discord
 from discord import app_commands
 from discord.ext import commands
-from git import Repo
 import re
+# Files
+from core.git_pushing import git_pushing
 
 class Log(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -20,7 +21,8 @@ class Log(commands.Cog):
     @app_commands.command(name="message_log", description="Log a message")
     async def message_log(self, msg: discord.Interaction, log: str):
         log_file_path = r"..\..\goobie\src\pages\log\Log.tsx"
-        git_file_path = r"..\..\goobie"
+        target_dir = r"..\..\goobie"
+        repo_link = 'https://github.com/Zilezia/goobie'
         line_number = 10
         current_time = datetime.now().strftime("%d/%m/%Y-%H:%M")
 
@@ -49,28 +51,7 @@ class Log(commands.Cog):
         
         with open(log_file_path, "w") as file:
             file.writelines(lines)
-            
-        # fucked something other here after changing from cra to vite
-        # or someting with my mouse events that had errors for some reason
-        # -------------------------------------------------------------------
 
-        try:
-            repo = Repo(git_file_path)
-            status_output = repo.git.status()
-    
-            if f"Changes to be committed:\n  (use \"git restore --staged <file>...\" to unstage)\n\tmodified:   {log_file_path}\n" in status_output:
-                await msg.response.send_message("Staging changes...")
-                repo.git.add('.')
-            else:
-                await msg.response.send_message("Changes staged already.")
-                 
-            await msg.response.send_message("Committing changes...")
-            repo.git.commit('-m', f"Log commit - {current_time}")
-            
-            # await msg.response.send_message("Pushing changes to remote repository...")
-            # repo.git.push('origin', 'main')
-            
-                    
-        except Exception as e:
-            await msg.response.send_message(f"Error: {e}")
+        await git_pushing(self.bot, msg, repo_link, target_dir)
 
+        # put publishing onto github

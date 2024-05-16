@@ -9,7 +9,7 @@ class Message(commands.Cog):
     async def on_message(self, msg: discord.Message):
         if msg.author == self.bot.user:
             return
-        
+                
         content = msg.content.lower()
         
         if content == "messages work?":
