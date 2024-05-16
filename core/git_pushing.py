@@ -17,4 +17,4 @@ async def git_pushing(bot, msg, repo_link, target_dir):
     repo.git.push('origin', 'main')
     
     await msg.channel.send("Finished!")
-    await cmt_channel.send(f'{repo_name} has been updated{repo_link}')
+    await cmt_channel.send(f'{repo_name} has been updated {repo_link}')
